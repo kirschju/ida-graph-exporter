@@ -4,7 +4,7 @@
 
 Plugin for IDA Pro that allows to export a function as rendered in the graph view to a vectorized SVG. The native plugin retrieves all relevant information from the currently focused graph view and stores them into a JSON. The JSON is then to be processed `json2svg.py` to produce an SVG. Compiled versions of the plugin for IDA Versions 7.0 to 8.2 can be found on the [Release page](https://github.com/kirschju/ida-graph-exporter/releases).
 
-The native code ships (amalgamated) copies of [miniz 3.0.2](https://github.com/richgel999/miniz) and [jsoncpp 1.9.5](https://github.com/open-source-parsers/jsoncpp) for compression and JSON serialization.
+The native code ships (amalgamated) copies of [miniz 3.0.2](https://github.com/richgel999/miniz) and [jsoncpp 1.9.5](https://github.com/open-source-parsers/jsoncpp) for compression and JSON serialization. The python script converting JSON to SVG needs [svgwrite](https://pypi.org/project/svgwrite/) installed.
 
 ## How?
 
@@ -25,6 +25,8 @@ Exported SVG:
 
 ![Exported SVG showing Control Flow Graph](example/id.json.pdf.svg)
 
-Converting from SVG to PDF:
+Converting from SVG to [PDF](example/id.json.pdf):
 
-![Converted PDF showing Control Flow Graph](example/id.json.pdf)
+```bash
+rsvg-convert -f pdf -o id.json.pdf id.json.pdf.svg
+```
